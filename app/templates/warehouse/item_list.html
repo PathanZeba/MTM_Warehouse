@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+        <div class="container">
+            <img class="navbar-img mx-3" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="no_logo">
+            <div class="navbar-brand">MTM Warehouse</div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a href="{{ url_for('home_bp.home_page') }}" class="nav-link mx-4"><strong>Home</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('action_bp.list_actions') }}" class="nav-link mx-4"><strong>Actions</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('report_bp.report_page') }}" class="nav-link mx-4"><strong>Reports</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" method="post" action="{{ url_for('login_bp.logout') }}">
+                            <input type="submit" class="btn btn-outline-danger btn-sm btn-floating mx-4 p-2" value="Logout" />
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="bg-dark text-light p-2 text-sm-start mb-2">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-center">
+            <div class="container col-3 mx-2 p-1">
+                <h1 class="text-start fs-2 m-0" style="color: yellowgreen">Warehouse Items</h1>
+            </div>
+            <div class="col-3 p-1">
+                <img class="img-fluid rounded img-thumbnail" style="height: 100px; width:100px" src="{{ url_for('static', filename='images/Items.jpg') }}">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mb-0">
+    <div class="d-sm-flex align-items-center justify-content-end p-3 mb-0">
+        <a href="{{ url_for('warehouse_bp.open_warehouse', id=item_list.W_ID) }}" class="btn btn-secondary btn-sm btn-floating col-2"><strong>Back</strong></a>
+    </div>
+</div>
+
+<div class="container row justify-content-center m-auto">
+    <div class="col-6">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="container px-5">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ messages[0] }}
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>
+
+<div class="container mt-5">
+    <table class="table table-bordered table-striped">
+        <thead class="text-center">
+            <tr>
+                <th>Name</th>
+                <th>Space per Unit</th>
+                <th># of Units</th>
+                <th>Total Cost</th>
+                <th>Total Space Acquired</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in item_list.warehouseItems %}
+            <tr>
+                <td>{{ item.Item_Name }}</td>
+                <td>{{ item.Item_Capacity_Quant }}</td>
+                <td>{{ item.Item_Unit_Quant }}</td>
+                <td>{{ item.Item_total_cost }}</td>
+                <td>{{ item.Item_SpaceAccuired }}</td>
+                <td class="d-flex justify-content-center row m-0">
+                    <a class="btn btn-outline-info btn-sm btn-floating col-3" href="{{ url_for('warehouse_bp.edit_item_page', id=item.WarehouseItemsId) }}">Edit</a>
+                    <span class="col-1"></span>
+                    <form class="col-4" method="post" action="{{ url_for('warehouse_bp.delete_item', id=item.WarehouseItemsId) }}">
+                        <button type="submit" class="btn btn-outline-danger btn-sm btn-floating col-12">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

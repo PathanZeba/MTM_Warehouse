@@ -1,0 +1,60 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="bg-dark text-light p-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="text-start text-success">Warehouse Details</h1>
+                <p class="my-4 text-start">Please provide all the required warehouse-related information.</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <img class="img-fluid rounded img-thumbnail shadow-lg" style="height: 200px; width: 200px;"
+                     src="{{ url_for('static', filename='images/W-graphic.jpg') }}">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-4">
+    <h4 class="text-center mb-4 fw-bold text-primary" style="font-size: 30px;">Warehouse Information</h4>
+
+    <form action="{{ url_for('action_bp.add_warehouse_info') }}" method="post">
+        <div class="row">
+            <div class="col-md-6 my-4">
+                <div class="row mb-3">
+                    <label for="name" class="col-md-4 col-form-label">Warehouse Name</label>
+                    <div class="col-md-8"><input type="text" class="form-control" name="name" required></div>
+                </div>
+                <div class="row mb-3">
+                    <label for="location" class="col-md-4 col-form-label">Address</label>
+                    <div class="col-md-8"><input type="text" class="form-control" name="location" required></div>
+                </div>
+                <div class="row mb-3">
+                    <label for="pincode" class="col-md-4 col-form-label">Pin Code</label>
+                    <div class="col-md-8"><input type="text" class="form-control" name="pincode" required></div>
+                </div>
+                <div class="row mb-3">
+                    <label for="capacity" class="col-md-4 col-form-label">Total Capacity (Sq. Ft)</label>
+                    <div class="col-md-8"><input type="number" step="0.01" class="form-control" name="capacity" required></div>
+                </div>
+            </div>
+
+            <!-- Button Section -->
+            <div class="col-md-5 pt-3 row justify-content-center">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    <a href="{{ url_for('action_bp.list_actions') }}" class="btn btn-outline-danger"><strong>Cancel</strong></a>
+                </div>
+                <div class="col-12 mt-2">
+                    <ul class="text-danger" style="list-style: none;">
+                        {% for error in errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

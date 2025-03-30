@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+    <div class="container d-flex align-items-center">
+        <img class="navbar-img mx-2" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="no_logo" style="max-width: 60px;" >
+        <div class="navbar-brand">MTM Warehouse</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="{{ url_for('home_bp.home_page') }}" class="nav-link mx-4"><strong>Home</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('action_bp.list_actions') }}" class="nav-link mx-4"><strong>Actions</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('report_bp.report_page') }}" class="nav-link mx-4"><strong>Reports</strong></a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" action="{{ url_for('login_bp.logout') }}" method="post">
+                        <input type="submit" class="btn btn-outline-danger btn-sm btn-floating mx-4 p-2" value="Logout">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-1">
+    <div class="row g-auto mx-auto my-5 justify-content-evenly">
+
+        <div class="col-2">
+            <div class="card" style="width: 16rem;">
+                <img src="{{ url_for('static', filename='images/W-micro.png') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-info"><strong>Warehouse</strong></h5>
+                    <p class="card-text text-center">
+                        Warehouse Count :
+                        <span class="card-text text-center fs-6 badge bg-success rounded-pill">{{ w_count }}</span>
+                    </p>
+                    <div class="col-12">
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('action_bp.add_warehouse_info') }}" class="btn btn-outline-dark btn-sm btn-floating">
+                                <strong class="fs-5">Add Warehouse</strong>
+                                
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="card" style="width: 16rem;">
+                <img src="{{ url_for('static', filename='images/transport.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-info"><strong>Move</strong></h5>
+                    <p class="card-text text-center">Transfer items between warehouses</p>
+                    <div class="col-12">
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('action_bp.transfer_items') }}" class="btn btn-outline-dark btn-sm btn-floating">
+                                <strong class="fs-5">Move Items</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    {% if last_action_message %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ last_action_message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

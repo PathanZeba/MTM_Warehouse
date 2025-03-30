@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ warehouse.warehouseInfoModelObj.W_Name }}{% endblock %}
+
+{% block content %}
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+        <div class="container">
+            <img class="navbar-img mx-3" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="no_logo">
+            <div class="navbar-brand">MTM Warehouse</div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="{{ url_for('home_bp.home_page') }}" class="nav-link mx-4"><strong>Home</strong></a></li>
+                    <li class="nav-item"><a href="{{ url_for('action_bp.list_actions') }}" class="nav-link mx-4"><strong>Actions</strong></a></li>
+                    <li class="nav-item"><a href="{{ url_for('report_bp.report_page') }}" class="nav-link mx-4"><strong>Reports</strong></a></li>
+                    <li class="nav-item">
+                        <form action="{{ url_for('login_bp.logout') }}" method="post">
+                            <input type="submit" class="btn btn-outline-danger btn-sm btn-floating mx-4 p-2" value="Logout">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="bg-dark p-2 text-light border-3">
+    <div class="card mb-3 border-4">
+        <div class="row g-0 align-items-center bg-dark">
+            <div class="col-4 px-5">
+                <div class="card-body p-0">
+                    <h5 class="card-title fs-3">{{ warehouse.warehouseInfoModelObj.W_Name }}</h5>
+                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ warehouse.warehouseInfoModelObj.W_Location }}</p>
+                </div>
+            </div>
+            <div class="col-4 p-0 justify-content-center">
+                <div class="card-body" style="padding: 2px;">
+                    <p class="card-text">Total Capacity: {{ warehouse.warehouseInfoModelObj.W_TotalCapacity }} Sq.Ft</p>
+                    <p class="card-text">Available: {{ warehouse.warehouseInfoModelObj.W_SpaceAvailable }} Sq.Ft</p>
+                    <p class="card-text">Percent Occupied: {{ warehouse.warehouseInfoModelObj.W_PercentFull }} &permil;</p>
+                </div>
+            </div>
+            <div class="col-4 d-flex justify-content-end px-5">
+                <img src="{{ url_for('static', filename='images/W-graphic.jpg') }}" class="img-fluid rounded-start" style="width: 150px; height: 150px; padding: 0;">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if last_action_message %}
+<div class="container px-5">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ last_action_message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="row g-auto mx-auto my-5 justify-content-center">
+        {% set sections = [
+        {"title": "Managers", "count": warehouse.loginEmpModelObj|length, "add_url": url_for('warehouse.add_manager', id=warehouse.warehouseInfoModelObj.WarehouseInfoId), "view_url": url_for('warehouse.view_manager', id=warehouse.warehouseInfoModelObj.WarehouseInfoId)},
+        {"title": "Employees", "count": warehouse.empDataModelObj|length, "add_url": url_for('warehouse.add_employee', id=warehouse.warehouseInfoModelObj.WarehouseInfoId), "view_url": url_for('warehouse.view_employee', id=warehouse.warehouseInfoModelObj.WarehouseInfoId)},
+        {"title": "Items", "count": warehouse.allItemsModelObj|length, "add_url": url_for('warehouse.add_item', id=warehouse.warehouseInfoModelObj.WarehouseInfoId), "view_url": url_for('warehouse.view_items', id=warehouse.warehouseInfoModelObj.WarehouseInfoId)}
+        ] %}
+
+        {% for section in sections %}
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-3 p-0">
+                        <div class="card-body p-1">
+                            <h5 class="card-title text-center text-info text-white bg-dark p-3 m-0"><strong>{{ section.title }}</strong></h5>
+                        </div>
+                    </div>
+                    <div class="col-5 p-0">
+                        <div class="card-body p-1">
+                            <p class="card-text text-center m-0 p-0 fs-6"><strong>Total {{ section.title.lower() }} in this warehouse</strong></p>
+                            <p class="card-text text-center m-0 p-0 fs-6"><strong class="px-5 fs-6 badge bg-success rounded-pill">{{ section.count }}</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-4 p-0 row g-1">
+                        <div class="card-body p-1 align-items-center col-6" style="height: 100%;">
+                            <a href="{{ section.add_url }}" class="col-12 btn btn-outline-primary btn-sm btn-floating"><strong class="fs-6">Add {{ section.title.lower() }}</strong></a>
+                        </div>
+                        <div class="card-body p-1 align-items-center col-6" style="height: 100%;">
+                            <a href="{{ section.view_url }}" class="col-12 btn btn-outline-info btn-sm btn-floating"><strong class="fs-6">View {{ section.title.lower() }}</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

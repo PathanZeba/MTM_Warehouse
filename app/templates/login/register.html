@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - MTM Warehouse</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-6 offset-md-3">
+            <h1>MTM Warehouse</h1>
+            <div class="login-container">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="MTM Warehouse">
+                </div>
+                <div class="form-group">
+                    <form action="{{ url_for('register_bp.register') }}" method="post">
+                        <h2 class="text-center">Register</h2>
+                        <select name="manager_id" id="namesDropdown" class="form-control form-control-sm">
+                            <option value="">Your Name...</option>
+                            {% for emp in login_emps %}
+                            {% if not emp.username %}
+                            <option value="{{ emp.login_emp_id }}" data-emp-id="{{ emp.login_emp_id }}" data-emp-role="{{ emp.role }}">{{ emp.name }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+
+                        <input type="text" class="form-control form-control-sm" placeholder="Username" name="username" required>
+
+                        <!-- Password Field with Eye Icon -->
+                        <div class="password-container">
+                            <input type="password" class="form-control form-control-sm" placeholder="Password" name="password" id="password" required>
+                            <i class="fa-solid fa-eye" id="togglePassword"></i>
+                        </div>
+
+                        <!-- Confirm Password Field with Eye Icon -->
+                        <div class="password-container">
+                            <input type="password" class="form-control form-control-sm" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
+                            <i class="fa-solid fa-eye" id="toggleConfirmPassword"></i>
+                        </div>
+
+                        <select name="selected_role" id="rolesDropdown" class="form-control form-control-sm">
+                            <option value="">Select Role...</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-block login-btn">Register</button>
+                        <a href="{{ url_for('login_bp.login_page') }}" class="btn btn-outline-danger"><strong>Cancel</strong></a>
+                        {% if errors %}
+                        <div class="text-danger text-sm-start text-decoration-none fs-6">{{ errors }}</div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if last_action_message %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ last_action_message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+</body>
+</html>

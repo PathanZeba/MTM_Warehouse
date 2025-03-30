@@ -1,0 +1,320 @@
+/*body {
+  background-color: #f5f5f5;*/
+
+/* display: flex; */
+
+/*justify-content: center;
+  align-items: center;
+  height: 1000vh;
+  margin: 0;
+}*/
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/fonts/customfont.woff2') format('woff2'), url('/fonts/customfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.login-container {
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    background-color: #dbe1e0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(27, 120, 227, 0.1);
+    width: 720px;
+    text-align: center;
+    overflow: hidden
+}
+
+
+
+h1 {
+    margin: 0 auto;
+    color: #343a40;
+    font-weight: bolder;
+    font-size: 56px;
+    text-align: center;
+    width: 720px;
+}
+
+h2 {
+    color: #343a40;
+    font-weight: bolder;
+    /* font-size: 56px; */
+    /* text-align: center; */
+}
+
+.logo {
+    flex: 0 0 50%;
+    text-align: center;
+    margin-bottom: 20px;
+    margin: auto;
+}
+
+    .logo img {
+        max-width: 100%;
+        height: 320px;
+        width: 320px;
+        border: 3px solid #343a40;
+    }
+
+.form-control {
+    margin-bottom: 10px;
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px; /* Curved shape */
+    border: 1px solid #ccc; /* Default border color */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #1b78e3 !important;
+        outline: 2px solid #1b78e3; /* Light blue border color when focused */
+        box-shadow: 0 0 5px #1b78e3; /* Light blue glow effect */
+    }
+
+    .form-control:hover {
+        border-color: #1b78e3;
+    }
+
+.login-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .login-btn:hover {
+        background-color: #333;
+        color: white;
+    }
+
+.enroll-link {
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+    .enroll-link:hover {
+        text-decoration: underline;
+    }
+
+.form-group {
+    height: 320px;
+    width: 320px;
+    border: 3px solid #343a40;
+    padding: 5%;
+}
+
+
+
+/* Additional custom styles to match the design */
+
+/* Ensure that the body uses a full-screen layout */
+
+html,
+body {
+    height: 100%;
+    /* background-color: #e9ecef;  Slight grey background */
+}
+
+/* Center the login box both vertically and horizontally */
+
+.login-box {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    position: relative;
+    /* For the logo positioning */
+}
+
+/* The logo would be absolutely positioned to hang over the top */
+
+.login-logo {
+    position: absolute;
+    top: -50px;
+    /* Half of the logo's height to be above the box */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    /* Assuming the logo is 100px in height */
+    height: 100px;
+    background: url('path-to-logo-image.png') no-repeat center center;
+    background-size: contain;
+}
+
+/* The form input fields styling */
+
+.form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* The login button styling */
+
+.btn-login {
+    background-color: #000000;
+    /* Black background */
+    color: #ffffff;
+    /* White text */
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid transparent;
+    width: 100%;
+}
+
+    .btn-login:hover {
+        background-color: #343a40;
+        /* Darker shade for hover state */
+    }
+
+/* The enrollment link styling */
+
+.enrollment-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    /* Bootstrap primary blue */
+    text-decoration: none;
+}
+
+    .enrollment-link:hover {
+        color: #0056b3;
+        /* Darker blue on hover */
+    }
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+    .login-box {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+body {
+    /*background-color: #fff;*/
+    margin: 0;
+}
+
+.navbar {
+    background-color: #000;
+    padding: 10px 15px;
+}
+
+.navbar-brand,
+.nav-link,
+.form-label {
+    color: #fff;
+}
+
+.content {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.add-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    line-height: 98px;
+    margin: auto;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.navbar-search-bar {
+    padding: 10px 0;
+    text-align: right;
+}
+
+    .navbar-search-bar .form-control {
+        display: inline-block;
+        width: auto;
+    }
+
+    .navbar-search-bar .btn {
+        vertical-align: top;
+    }
+
+.message {
+    margin: 20px 0;
+}
+
+.navbar-img {
+    height: 3%;
+    width: 3%;
+}
+
+.bg-image-ad {
+    background-image: url('/images/ad.jpg');
+    background-size: contain;
+    background-position: center;
+    height: 720px;
+    width: 1080px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.access-denied-container {
+    background-color: rgba(49, 48, 48, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    color: white;
+}
+
+/* Cancel Button Styling */
+.register-btn, .cancel-btn {
+    background-color: #dc3545; /* Bootstrap Danger Color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .cancel-btn:hover {
+        background-color: #b02a37; /* Darker red on hover */
+    }
+
+
+#register-user {
+    color: crimson;
+}
+
+.cancel-btn {
+    background-color: crimson; /* Red background */
+}
+
+    .cancel-btn:hover {
+        background-color: blue; /* Turns blue on hover */
+    }
+
+#login-box {
+    background-color: #dbe1e0;
+}

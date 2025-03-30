@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTM Warehouse - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-6 offset-md-3">
+            <h1>MTM Warehouse</h1>
+            <div class="login-container" id="login-box">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="MTM Warehouse">
+                </div>
+
+                <div class="form-group">
+                    <form method="post" action="{{ url_for('login_bp.login_page') }}">
+                        <h2 class="text-center">Login</h2>
+                        <input type="text" name="username" class="form-control form-control-sm" placeholder="Username" required>
+
+                        <!-- Password Field with Eye Icon -->
+                        <div class="password-container">
+                            <input type="password" name="password" class="form-control form-control-sm" placeholder="Password" id="password" required>
+                            <i class="fa-solid fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                        </div>
+
+                        <button type="submit" class="btn btn-block login-btn">Login</button>
+
+                        {% with messages = get_flashed_messages(with_categories=True) %}
+                        {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </form>
+
+                    <a href="{{ url_for('register_bp.register') }}" class="enroll-link text-info text-decoration-none">
+                        <span style="color:crimson; font-weight:800;">Register</span>
+                    </a>
+                </div>
+            </div>
+
+            {% if temp_message %}
+            <div class="container p-5 row d-flex justify-content-center">
+                <div class="alert alert-success alert-dismissible fade show col-12" role="alert">
+                    {{ temp_message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script>
+        // Password Toggle Function
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            let passwordField = document.getElementById('password');
+            let type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+
+</body>
+</html>

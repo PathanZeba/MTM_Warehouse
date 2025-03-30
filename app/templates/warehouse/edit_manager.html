@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+        <div class="container">
+            <img class="navbar-img mx-3" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="no_logo">
+            <div class="navbar-brand">MTM Warehouse</div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a href="{{ url_for('home.home_page') }}" class="nav-link mx-4"><strong>Home</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('action.list_actions') }}" class="nav-link mx-4"><strong>Actions</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('report.report_page') }}" class="nav-link mx-4"><strong>Reports</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" action="{{ url_for('login.logout') }}" method="post">
+                            <input type="submit" class="btn btn-outline-danger btn-sm btn-floating mx-4 p-2" value="Logout" />
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="bg-dark text-light p-2 text-sm-start">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div class="container col-4 mx-2">
+                <h1 class="text-start" style="color: yellowgreen">Manager Details</h1>
+                <p class="my-4 text-start">
+                    Please put all the information that has been asked related to the manager.
+                </p>
+            </div>
+            <div class="col-3 p-3">
+                <img class="img-fluid rounded img-thumbnail" style="height: 200px; width:200px" src="{{ url_for('static', filename='images/manager-micro.png') }}">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-4">
+    <h4 class="text-center mb-4" style="font-weight: bold; font-size:30px; color: #005f9b;">Manager Information</h4>
+</div>
+
+<div class="container-md">
+    <form action="{{ url_for('warehouse.edit_manager') }}" method="post">
+        <div class="row">
+            <div class="container col-6 my-4">
+                <div class="row">
+                    <div class="col-4">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" name="name" value="{{ manager.name }}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" name="email" value="{{ manager.email }}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <label for="role">Access rights</label>
+                    </div>
+                    <div class="col-8">
+                        <select name="role" class="form-select form-control" required>
+                            <option {% if manager.role= ='super_user' %}selected{% endif %} value="super_user">SuperUser</option>
+                            <option {% if manager.role= ='user' %}selected{% endif %} value="user">User</option>
+                            <option {% if manager.role= ='restricted_user' %}selected{% endif %} value="restricted_user">Restricted User</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <label for="warehouse">Warehouse assigned</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" name="warehouse" value="{{ manager.warehouse_info.w_name }}" readonly>
+                    </div>
+                </div>
+
+                <input type="hidden" name="login_emp_id" value="{{ manager.login_emp_id }}">
+                <input type="hidden" name="warehouse_info_id" value="{{ manager.warehouse_info_id }}">
+            </div>
+
+            <div class="col-5 pt-3 row justify-content-center">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    <a href="{{ url_for('warehouse.open_warehouse', id=manager.warehouse_info.warehouse_info_id) }}" class="btn btn-outline-danger"><strong>Cancel</strong></a>
+                </div>
+                <div class="col-12 align-items-start">
+                    {% for message in get_flashed_messages(category_filter=['error']) %}
+                    <div class="text-danger">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

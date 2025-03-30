@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% set is_warehouse_present = warehouses|length > 0 %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+    <div class="container">
+        <img class="navbar-img mx-3" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="no_logo" style="max-width: 60px;">
+        <div class="navbar-brand">MTM Warehouse</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {% if current_user.is_authenticated %}
+        <div class="justify-content-center px-5">
+            <span class="mx-5 text-white">Hello! {{ current_user.Username }}</span>
+        </div>
+        {% endif %}
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link mx-4" href="{{ url_for('home_bp.home_page') }}"><strong>Home</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-4" href="{{ url_for('action_bp.list_actions') }}"><strong>Actions</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-4" href="{{ url_for('report_bp.report_page') }}"><strong>Reports</strong></a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" method="post" action="{{ url_for('login_bp.logout') }}">
+                        <input type="submit" class="btn btn-outline-danger btn-sm btn-floating mx-4 p-2" value="Logout" />
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ messages[0] }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+  {% endif %}
+{% endwith %}
+
+<!-- Warehouse Listing -->
+{% if not is_warehouse_present %}
+<div class="container my-5">
+    <div class="no-item-message text-center">
+        <p>You don't have anything to view.</p>
+        <p>Start by adding a warehouse.</p>
+        <p>Go to <strong>Actions</strong> page</p>
+    </div>
+</div>
+{% else %}
+<div class="container mt-4">
+    <h4 class="text-center mb-4 bg-dark text-white p-2">All Warehouses</h4>
+</div>
+
+<div class="container mt-5">
+    {% for warehouse in warehouses %}
+    <div class="card mb-3">
+        <div class="row g-0 align-items-center">
+            <div class="col-1 p-0 text-center">
+                <span class="badge bg-success rounded-pill fs-3 p-3">{{ loop.index }}</span>
+            </div>
+            <div class="col-2 p-0">
+                <img src="{{ url_for('static', filename='images/W-graphic.jpg') }}" class="img-fluid rounded-start"
+                     style="width: 100px; height: 100px;">
+            </div>
+            <div class="col-5 p-0">
+                <div class="card-body p-2">
+                    <h5 class="card-title">{{ warehouse.W_Name }}</h5>
+                    <p class="card-text">
+                        <i class="fas fa-map-marker-alt"></i> {{ warehouse.W_Location }}
+                    </p>
+                </div>
+            </div>
+            <div class="col-4 p-0">
+                <div class="card-body p-2">
+                    <p class="card-text">Capacity: {{ warehouse.W_TotalCapacity }} Sq.Ft</p>
+                    {% for warehouse in warehouses %}
+                    <a href="{{ url_for('warehouse.open_warehouse', id=warehouse.warehouse_info_id) }}" class="btn btn-primary">Open Warehouse
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
