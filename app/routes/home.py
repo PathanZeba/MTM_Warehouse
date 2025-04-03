@@ -7,19 +7,20 @@ from app import db
 #  Blueprint correctly defined
 home_bp = Blueprint("home_bp", __name__, url_prefix="/home")
 
-@home_bp.route("/")
-@login_required
+@home_bp.route('/')
+@login_required  # Ensures user is logged in
 def home_page():
-    # Fetch warehouse data from database
     warehouse_infos = WarehouseInfo.query.all()
+    
+    if len(warehouse_infos) == 0:
+        warehouse_infos.append(WarehouseInfo(Warehouse_Info_Id=-1))
 
-    # Debugging: Check warehouse IDs
-    if not warehouse_infos:
-        print(" No warehouse found in DB!")
-    else:
-        print(" Warehouses loaded: ", [w.warehouse_info_id for w in warehouse_infos])
+    
+    warehouse_dicts = [{col.name: getattr(w, col.name) for col in WarehouseInfo.__table__.columns} for w in warehouse_infos]
 
-    return render_template("home/home.html", warehouses=warehouse_infos, user=current_user)
+    print(" Warehouses loaded: ", warehouse_dicts)  
+    
+    return render_template('home/home.html', warehouse_infos=warehouse_infos)
 
 @home_bp.route('/logout')
 @login_required

@@ -2,7 +2,7 @@
 from sqlalchemy.orm import relationship
 from app import db
 
-# models/warehouse_info.py
+
 class WarehouseInfo(db.Model):
     __tablename__ = 'Warehouse_Info'
     __table_args__ = {'schema': 'dbo'}
@@ -19,7 +19,7 @@ class WarehouseInfo(db.Model):
     warehouse_items = db.relationship('WarehouseItems', backref='Warehouse_Info')
     emp_data = db.relationship('EmpData', backref='Warehouse_Info', lazy=True)
     
-    # 🔥 Backref ka unique naam rakha: warehouse_info_login_emp
+    
     warehouse_info_login_emp = db.relationship(
         "LoginEmp",
         back_populates="warehouse_info",

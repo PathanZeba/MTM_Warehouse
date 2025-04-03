@@ -2,11 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\app",
+    "\\app\\models",
+    "\\app\\routes",
     "\\app\\static",
     "\\app\\static\\css",
     "\\app\\templates",
+    "\\app\\templates\\home",
     "\\app\\templates\\login"
   ],
-  "SelectedNode": "\\requirements.txt",
+  "SelectedNode": "\\app\\routes\\register.py",
   "PreviewInSolutionExplorer": true
 }
