@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app"
+    "\\app",
+    "\\app\\static",
+    "\\app\\static\\css",
+    "\\app\\templates",
+    "\\app\\templates\\login"
   ],
-  "SelectedNode": "\\app\\__init__.py",
+  "SelectedNode": "\\requirements.txt",
   "PreviewInSolutionExplorer": true
 }
