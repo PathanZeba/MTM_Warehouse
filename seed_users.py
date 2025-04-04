@@ -7,19 +7,19 @@ app = create_app()
 
 with app.app_context():
     try:
-        # Pehle Users table ka saara data delete karna
+        
         db.session.query(User).delete()
-        db.session.commit()  # Ensure deletion is committed before inserting
+        db.session.commit()  
 
         password = "admin"
-        password_hash = generate_password_hash(password)  # Admin password hash karna
+        password_hash = generate_password_hash(password)  
 
-        # Superuser create karna
+        
         superuser = User(
-            Id=str(uuid.uuid4()),  # UUID assign karna
+            Id=str(uuid.uuid4()),  
             Username="superuser",
             NormalizedUsername="SUPERUSER",
-            Email="superuser@example.com",  # NULL hata ke ek dummy email de rahe hain
+            Email="superuser@example.com",  
             NormalizedEmail="SUPERUSER@EXAMPLE.COM",
             EmailConfirmed=False,
             PasswordHash=password_hash,
@@ -33,12 +33,12 @@ with app.app_context():
             AccessFailedCount=0
         )
 
-        # Masteruser create karna
+        
         masteruser = User(
-            Id=str(uuid.uuid4()),  # UUID assign karna
+            Id=str(uuid.uuid4()),  
             Username="masteruser",
             NormalizedUsername="MASTERUSER",
-            Email="masteruser@example.com",  # NULL hata ke ek dummy email de rahe hain
+            Email="masteruser@example.com",  
             NormalizedEmail="MASTERUSER@EXAMPLE.COM",
             EmailConfirmed=False,
             PasswordHash=password_hash,
@@ -59,7 +59,7 @@ with app.app_context():
         print(f" Superuser created with Id: {superuser.Id}")
         print(f" Masteruser created with Id: {masteruser.Id}")
 
-        # Hash verification check
+        
         stored_user = db.session.query(User).filter_by(Username="superuser").first()
 
         if stored_user:

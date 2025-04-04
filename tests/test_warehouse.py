@@ -7,7 +7,7 @@ def warehouse_service():
     """Service instance for testing."""
     return WarehouseService()
 
-#  Test: CheckPercentage (Equivalent to W_Percentage in C#)
+
 @pytest.mark.parametrize("total_capacity, space_available, expected_percentage", [
     (1000, 800, 20),
     (15000, 6000, 60),
@@ -24,7 +24,7 @@ def test_check_percentage(warehouse_service, total_capacity, space_available, ex
 
     assert percent_full == expected_percentage
 
-#  Test: CheckSpaceAvailable (Equivalent to W_SpaceAvailable in C#)
+
 @pytest.mark.parametrize("total_capacity, space_available", [
     (1000, 800),
     (15000, 10000),

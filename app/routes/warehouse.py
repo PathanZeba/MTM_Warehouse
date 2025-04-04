@@ -153,7 +153,7 @@ def add_item():
         Item_Capacity_Quant=item_capacity_quant,
         Item_Unit_Quant=item_unit_quant,
         warehouse_info_id=warehouse_id,
-        Item_SpaceAccuired=total_space_required  # Check if column name matches
+        Item_SpaceAccuired=total_space_required  
     )
 
     db.session.add(new_item)

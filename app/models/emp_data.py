@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from app import db  # Ensure `db` is initialized in your app
+from app import db  
 
 # models/emp_data.py
 class EmpData(db.Model):

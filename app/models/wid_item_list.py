@@ -1,6 +1,6 @@
 from typing import List, Optional
 from dataclasses import dataclass
-from .warehouse_items import WarehouseItems  # Ensure correct import path
+from .warehouse_items import WarehouseItems  
 
 @dataclass
 class WIDItemListModel:

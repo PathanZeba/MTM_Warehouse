@@ -1,6 +1,6 @@
 from typing import List, Optional
 from dataclasses import dataclass
-from .emp_data import EmpData  # Ensure correct import path
+from .emp_data import EmpData  
 
 @dataclass
 class WIDEmpListModel:

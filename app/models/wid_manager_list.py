@@ -1,6 +1,6 @@
 from typing import List, Optional
 from dataclasses import dataclass
-from .login_emp import LoginEmp  # Ensure correct import path
+from .login_emp import LoginEmp  
 
 @dataclass
 class WIDManagerListModel:

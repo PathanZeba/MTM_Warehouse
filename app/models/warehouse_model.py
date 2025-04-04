@@ -9,10 +9,10 @@ class WarehouseModel:
     aur WarehouseItems models ko encapsulate karti hai.
     """
     def __init__(self, warehouse_info=None, login_emps=None, emp_data=None, all_items=None):
-        self.warehouse_info = warehouse_info  # WarehouseInfo instance
-        self.login_emps = login_emps if login_emps else []  # List of LoginEmp instances
-        self.emp_data = emp_data if emp_data else []  # List of EmpData instances
-        self.all_items = all_items if all_items else []  # List of WarehouseItems instances
+        self.warehouse_info = warehouse_info  
+        self.login_emps = login_emps if login_emps else []  
+        self.emp_data = emp_data if emp_data else []  
+        self.all_items = all_items if all_items else []  
 
     def __repr__(self):
         return f"<WarehouseModel(Warehouse: {self.warehouse_info}, Employees: {len(self.login_emps)}, Items: {len(self.all_items)})>"

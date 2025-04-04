@@ -9,5 +9,5 @@ class ItemToTransferForm(FlaskForm):
 class ItemTransferForm(FlaskForm):
     source_warehouse_id = SelectField("Source Warehouse", coerce=int, validators=[DataRequired()])
     destination_warehouse_id = SelectField("Destination Warehouse", coerce=int, validators=[DataRequired()])
-    items_to_transfer = FieldList(FormField(ItemToTransferForm), min_entries=1)  # ✅ Multiple items ka support
+    items_to_transfer = FieldList(FormField(ItemToTransferForm), min_entries=1)  
     submit = SubmitField("Transfer Items")
