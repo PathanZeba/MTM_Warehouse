@@ -9,24 +9,24 @@ from app.models.emp_data import EmpData
 from app.models.warehouse_items import WarehouseItems
 from app.services.warehouse_service import WarehouseService
 
-# Blueprint Initialization
+
 warehouse_bp = Blueprint('warehouse', __name__, url_prefix='/warehouse')
 
-# Role Permissions
+
 super_user_permission = Permission(RoleNeed('superuser'))
 master_user_permission = Permission(RoleNeed('masteruser'))
 
-# Service Instance
+
 warehouse_service = WarehouseService()
 
-# Warehouse Overview
+
 @warehouse_bp.route('/view/<int:id>')
 @login_required
 def open_warehouse(id):
     warehouse_info = WarehouseInfo.query.get(id)
     if not warehouse_info:
         flash("Warehouse not found!", "danger")
-        return redirect(url_for("warehouse.open_warehouse", id=current_user.warehouse_id))  # ✅ Default Warehouse
+        return redirect(url_for("warehouse.open_warehouse", id=current_user.warehouse_id))  
 
     login_emp = LoginEmp.query.filter_by(warehouse_info_id=id).all()
     emp_data = EmpData.query.filter_by(warehouse_info_id=id).all()
@@ -40,7 +40,7 @@ def open_warehouse(id):
 
     return render_template('warehouse/warehouse.html', warehouse_info=warehouse_info, login_emp=login_emp, emp_data=emp_data, all_items=all_items)
 
-# Manager Routes
+
 @warehouse_bp.route('/<int:id>/managers', methods=['GET'])
 @login_required
 def view_managers(id):
@@ -73,7 +73,7 @@ def add_manager():
     flash('Error adding manager.', 'danger')
     return redirect(url_for('warehouse.view_managers', id=warehouse_id))
 
-# Employee Routes
+
 @warehouse_bp.route('/<int:id>/employees', methods=['GET'])
 @login_required
 def view_employees(id):
@@ -105,7 +105,7 @@ def add_employee():
     flash('Error adding employee.', 'danger')
     return redirect(url_for('warehouse.view_employees', id=warehouse_id))
 
-# Item Routes
+
 @warehouse_bp.route('/<int:id>/items', methods=['GET'])
 @login_required
 def view_items(id):

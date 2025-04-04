@@ -3,15 +3,10 @@
     "",
     "\\app",
     "\\app\\forms",
+    "\\app\\routes",
     "\\app\\templates",
-    "\\app\\templates\\action",
-    "\\PATHAN\\source",
-    "\\PATHAN\\source\\Repos",
-    "\\PATHAN\\source\\Repos\\MTM_Warehouse",
-    "\\PATHAN\\source\\Repos\\MTM_Warehouse\\app",
-    "\\PATHAN\\source\\Repos\\MTM_Warehouse\\app\\static",
-    "\\PATHAN\\source\\Repos\\MTM_Warehouse\\app\\static\\css"
+    "\\app\\templates\\action"
   ],
-  "SelectedNode": "\\seed_users.py",
+  "SelectedNode": "\\app\\routes\\warehouse.py",
   "PreviewInSolutionExplorer": true
 }
