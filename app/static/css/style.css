@@ -120,9 +120,9 @@ h2 {
 }
 
 
+/* Additional custom styles to match the design */
 
-
-
+/* Ensure that the body uses a full-screen layout */
 html,
 body {
     height: 100%;
@@ -130,7 +130,7 @@ body {
 }
 
 
-
+/* Center the login box both vertically and horizontally */
 .login-box {
     width: 100%;
     max-width: 330px;
@@ -141,7 +141,7 @@ body {
 }
 
 
-
+/* The logo would be absolutely positioned to hang over the top */
 .login-logo {
     position: absolute;
     top: -50px;
@@ -156,7 +156,7 @@ body {
 }
 
 
-
+/* The form input fields styling */
 .form-control {
     position: relative;
     box-sizing: border-box;
@@ -166,7 +166,7 @@ body {
 }
 
 
-
+/* The login button styling */
 .btn-login {
     background-color: #000000;
     
@@ -185,7 +185,7 @@ body {
     }
 
 
-
+/* The enrollment link styling */
 .enrollment-link {
     display: block;
     text-align: center;
@@ -201,7 +201,7 @@ body {
     }
 
 
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .login-box {
         margin-top: 20px;
