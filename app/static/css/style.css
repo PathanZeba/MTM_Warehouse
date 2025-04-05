@@ -68,15 +68,15 @@ h2 {
     height: auto;
     padding: 10px;
     font-size: 16px;
-    border-radius: 10px; /* Curved shape */
-    border: 1px solid #ccc; /* Default border color */
+    border-radius: 10px; 
+    border: 1px solid #ccc; 
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
     .form-control:focus {
         border-color: #1b78e3 !important;
-        outline: 2px solid #1b78e3; /* Light blue border color when focused */
-        box-shadow: 0 0 5px #1b78e3; /* Light blue glow effect */
+        outline: 2px solid #1b78e3; 
+        box-shadow: 0 0 5px #1b78e3; 
     }
 
     .form-control:hover {
@@ -121,17 +121,15 @@ h2 {
 
 
 
-/* Additional custom styles to match the design */
 
-/* Ensure that the body uses a full-screen layout */
 
 html,
 body {
     height: 100%;
-    /* background-color: #e9ecef;  Slight grey background */
+    
 }
 
-/* Center the login box both vertically and horizontally */
+
 
 .login-box {
     width: 100%;
@@ -139,25 +137,25 @@ body {
     padding: 15px;
     margin: auto;
     position: relative;
-    /* For the logo positioning */
+    
 }
 
-/* The logo would be absolutely positioned to hang over the top */
+
 
 .login-logo {
     position: absolute;
     top: -50px;
-    /* Half of the logo's height to be above the box */
+    
     left: 50%;
     transform: translateX(-50%);
     width: 100px;
-    /* Assuming the logo is 100px in height */
+    
     height: 100px;
     background: url('path-to-logo-image.png') no-repeat center center;
     background-size: contain;
 }
 
-/* The form input fields styling */
+
 
 .form-control {
     position: relative;
@@ -167,13 +165,13 @@ body {
     font-size: 16px;
 }
 
-/* The login button styling */
+
 
 .btn-login {
     background-color: #000000;
-    /* Black background */
+    
     color: #ffffff;
-    /* White text */
+    
     font-size: 16px;
     border-radius: 5px;
     padding: 10px;
@@ -183,26 +181,26 @@ body {
 
     .btn-login:hover {
         background-color: #343a40;
-        /* Darker shade for hover state */
+        
     }
 
-/* The enrollment link styling */
+
 
 .enrollment-link {
     display: block;
     text-align: center;
     margin-top: 10px;
     color: #007bff;
-    /* Bootstrap primary blue */
+    
     text-decoration: none;
 }
 
     .enrollment-link:hover {
         color: #0056b3;
-        /* Darker blue on hover */
+        
     }
 
-/* Responsive adjustments */
+
 
 @media (max-width: 768px) {
     .login-box {
@@ -285,9 +283,9 @@ body {
     color: white;
 }
 
-/* Cancel Button Styling */
+
 .register-btn, .cancel-btn {
-    background-color: #dc3545; /* Bootstrap Danger Color */
+    background-color: #dc3545; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -299,7 +297,7 @@ body {
 }
 
     .cancel-btn:hover {
-        background-color: #b02a37; /* Darker red on hover */
+        background-color: #b02a37; 
     }
 
 
@@ -308,11 +306,11 @@ body {
 }
 
 .cancel-btn {
-    background-color: crimson; /* Red background */
+    background-color: crimson; 
 }
 
     .cancel-btn:hover {
-        background-color: blue; /* Turns blue on hover */
+        background-color: blue; 
     }
 
 #login-box {

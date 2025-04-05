@@ -2,11 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\app",
-    "\\app\\forms",
-    "\\app\\routes",
+    "\\app\\static",
+    "\\app\\static\\css",
     "\\app\\templates",
-    "\\app\\templates\\action"
+    "\\app\\templates\\home"
   ],
-  "SelectedNode": "\\app\\routes\\warehouse.py",
+  "SelectedNode": "\\app\\templates\\home\\privacy.html",
   "PreviewInSolutionExplorer": true
 }
