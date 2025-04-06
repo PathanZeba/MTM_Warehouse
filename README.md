@@ -8,7 +8,7 @@
 
 3. Install Dependencies (Install the required Python packages, run = pip install requirements.txt).
 
-4. Configure the Database (Need SQL Server).
+4. Configure the Database (Need SQL Server and SSMS installed).
 
 5. Seed User (create a default user,run = python seed_users.py).
 
