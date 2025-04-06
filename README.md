@@ -6,4 +6,4 @@ Install Dependencies (Install the required Python packages, run = pip install re
 Configure the Database (Need SQL Server).
 Seed User (create a default user,run = python seed_users.py).
 Start the Application (Run the Flask Server = python run.py).
-Login Credentials Username = superuser & password = admin
+Login Credentials Username = superuser & password = admin.
