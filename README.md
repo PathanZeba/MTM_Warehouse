@@ -1,16 +1,17 @@
 # MTM_Warehouse
-##Run the Application in Visual studio.
 
-Clone the repository.
+## 1. Run the Application in Visual studio.
 
-Set Up Virtual Environment ( python -m venv venv).
+2. Clone the repository.
 
-Install Dependencies (Install the required Python packages, run = pip install requirements.txt).
+3. Set Up Virtual Environment ( python -m venv venv).
 
-Configure the Database (Need SQL Server).
+4. Install Dependencies (Install the required Python packages, run = pip install requirements.txt).
 
-Seed User (create a default user,run = python seed_users.py).
+6. Configure the Database (Need SQL Server).
 
-Start the Application (Run the Flask Server = python run.py).
+7. Seed User (create a default user,run = python seed_users.py).
 
-Login Credentials Username = superuser & password = admin.
+8. Start the Application (Run the Flask Server = python run.py).
+
+9. Login Credentials Username = superuser & password = admin.
