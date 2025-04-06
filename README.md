@@ -6,7 +6,7 @@
 
 2. Set Up Virtual Environment.
 
-3. Install Dependencies (Install the required Python packages, run = pip install requirements.txt ).
+3. Install Dependencies (Install the required Python packages, run = pip install -r requirements.txt ).
 
 4. Configure the Database (Needs SQL Server and SSMS installed).
 
@@ -14,4 +14,4 @@
 
 6. Start the Application (Run the Flask Server = python run.py).
 
-7. Login Credentials Username = superuser & password = admin.
+7. Login with Username = superuser & password = admin.
