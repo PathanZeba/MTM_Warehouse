@@ -4,7 +4,7 @@
 
 1. Clone the repository (Needs visual studio) Open 'MTM-Warehouse.sln'.
 
-2. Set Up Virtual Environment ( python -m venv venv).
+2. Set Up Virtual Environment.
 
 3. Install Dependencies (Install the required Python packages, run = pip install requirements.txt ).
 
